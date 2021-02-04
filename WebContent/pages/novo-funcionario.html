@@ -2,26 +2,56 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<link rel="shortcut icon" href="favicon.ico"/>
-	<title>Cadastrar um novo Produto </title>
+	<title>Cadastrar um novo Funcionário</title>
 	<link rel="stylesheet" type="text/css"
 		href="resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css"
-		href="resources/css/main.css">
+		href="resources/css/bootstrap-vue.css">
 </head>
 
 <body>
 
-<a href="/funcionarios/index.html">Voltar</a>
+<a href="/funcionarios/">Voltar</a>
 
-<div id="app">
-	<p>{{mensagem}}</p>
-	
-	<h4>Cadastro de funcionário</h4>
-		
-	<p>Implementar o cadastro de funcionário</p>	
-</div>
+	<h4>Cadastro de Funcionário</h4>
+
+	<div id="app">
+		<div v-if="setores.length == 0">
+			{{getSetores()}}
+		</div>
+
+
+		<form @submit="cadastrar">
+			<h1 v-if="cerro">Erro ao cadastrar usuário.</h1>
+
+			<label for="nome">Nome:</label><br>
+		    <input v-model="fnome" type="text" id="fnome" name="fnome"><br>
+		    <label for="setor">Setor:</label><br>
+
+			<select v-model="fsetor" name="setor" id="setor">
+		   		<option v-for="isetor in setores" v-bind:value="{ id: isetor.id, nome: isetor.nome }">
+					{{ isetor.nome }}
+				</option>
+			</select><br>
+
+
+			<label for="salario">Salario:</label><br>
+			<input v-model="fsalario" type="text" id="salario" name="salario"><br>
+
+			<label for="email">Email:</label><br>
+		    <input v-model="femail" type="text" id="email" name="email"><br>
+
+			<label for="idade">Idade:</label><br>
+		    <input v-model="fidade" type="text" id="idade" name="idade"><br>
+
+			<span @click="cadastrar(fnome, fsetor, fsalario, femail, fidade)"><b>Cadastrar</b></span>
+		</form>
+
+
+	</div>
+
 
 	<script src="resources/js/vue.js"></script>
 	<script src="resources/js/axios.min.js"></script>

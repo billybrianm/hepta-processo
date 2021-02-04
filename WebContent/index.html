@@ -13,7 +13,6 @@
 
 <body>
 
-
 	<div id="inicio" class="container-fluid table" >
 		<h4>Lista dos Funcionários</h4>
 		<table>
@@ -27,22 +26,25 @@
 			<th></th>
 		  </tr>
 		  <tbody id="event-table" >
-			<tr v-for="funcionario in listaProdutos">
-			  <td>{{ funcionario.nome }}</td> 
-			  <td>{{ funcionario.setor.nome }}</td> 
-			  <td>{{ funcionario.salario }}</td> 
-			  <td>{{ funcionario.email }}</td> 
+			<tr v-for="funcionario in listaFuncs">
+			  <td>{{ funcionario.nome }}</td>
+			  <td>{{ funcionario.setor.nome }}</td>
+			  <td>{{ funcionario.salario }}</td>
+			  <td>{{ funcionario.email }}</td>
 			  <td>{{ funcionario.idade }}</td>
-			  <td><span @click="">&#9998;</span>
-				<span  @click="">&#10006;</span>
+			  <td><span @click="editarFuncionario(funcionario.id)">&#9998;</span>
+				<span @click="remFun(funcionario.id)">&#10006;</span>
 			  </td>
 			</tr>
 		  </tbody>
 		</table>
+
+	  <a href="/funcionarios/novo-funcionario">Novo funcionário</a>
 	  </div>
 
 	<script src="resources/js/vue.js"></script>
-	<script src="resources/js/axios.min.js"></script>
-	<script src="resources/js/index.js"></script>
+  	<script src="resources/js/axios.min.js"></script>
+  	<script src="resources/js/index.js"></script>
+
 </body>
 </html>
