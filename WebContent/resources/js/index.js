@@ -1,28 +1,35 @@
 var inicio = new Vue({
 	el:"#inicio",
     data: {
-        listaProdutos: [],
-        listaProdutosHeader: [
-			{sortable: false, key: "nome", label:"Nome"},
-			{sortable: false, key: "fabricante.nome", label:"Fabricante"},
-			{sortable: false, key: "volume", label:"Volume"},
-			{sortable: false, key: "unidade", label:"Unidade"},
-			{sortable: false, key: "estoque", label:"Estoque"}
-		]
+        listaFuncs: [],
     },
     created: function(){
         let vm =  this;
-        vm.buscaProdutos();
+        vm.buscaFuncionarios();
     },
-    methods:{
-        buscaProdutos: function(){
+    methods: {
+        buscaFuncionarios: function(){
 			const vm = this;
 			axios.get("/funcionarios/rs/funcionarios")
-			.then(response => {vm.listaProdutos = response.data;
+			.then(response => {vm.listaFuncs = response.data;
 			}).catch(function (error) {
 				vm.mostraAlertaErro("Erro interno", "Não foi listar natureza de serviços");
 			}).finally(function() {
 			});
 		},
+		remFun: function (func_id) {
+			axios.delete('/funcionarios/rs/funcionarios/' + func_id)
+			.then( response => {
+				alert('Usuário deletado com sucesso.')
+				document.location.reload(true);
+			})
+			.catch( error => {
+			   alert('Erro ao deletar.')
+			})
+	    },
+
+		editarFuncionario: function(func_id) {
+			window.location.href = 'editar-funcionario?id=' + func_id;
+		}
     }
 });
