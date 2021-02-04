@@ -25,6 +25,24 @@
 		<servlet-name>Jersey Servlet</servlet-name>
 		<url-pattern>/rs/*</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>novo-funcionario</servlet-name>
+		<jsp-file>/pages/novo-funcionario.html</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>novo-funcionario</servlet-name>
+		<url-pattern>/novo-funcionario</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>editar-funcionario</servlet-name>
+		<jsp-file>/pages/editar-funcionario.html</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>editar-funcionario</servlet-name>
+		<url-pattern>/editar-funcionario</url-pattern>
+	</servlet-mapping>
 
 	<session-config>
 		<session-timeout>30</session-timeout>
